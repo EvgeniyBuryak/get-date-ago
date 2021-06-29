@@ -4,17 +4,19 @@ let salaries = {
     "Mary": 250,
 };
 
-function topSalary(obj) { 
+function topSalary({ ...rest } = {}) { 
     let max = 0;
     let result;
-    for (let [key, value] of Object.entries(obj)) {
+    for (let [key, value] of Object.entries(rest)) {
 
         if (value > max) {
             max = value;
             result = key;
         }
     }
+    if (max == 0) return null;
     return result;
 }
 
 alert(topSalary(salaries));
+alert(topSalary());
