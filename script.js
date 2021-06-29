@@ -1,24 +1,27 @@
-let salaries = {
-    "Jhon": 100,
-    "Pete": 300,
-    "Mary": 250,
-};
+let date = new Date(2015, 0, 2);
 
-function topSalary({ ...rest } = {}) { 
+alert(getDateAgo(date, 1));
+alert(getDateAgo(date, 2));
+alert(getDateAgo(date, 365));
 
-    let max = 0;
-    let result = null;
-
-    for (let [key, value] of Object.entries(rest)) {
-
-        if (value > max) {
-            max = value;
-            result = key;
-        }
-    }
+function getDateAgo(date, days) {
+    let saveDate = date.toString().split(' '); // Fri Jan 02 2015 00:00:00 GMT+0600 (Novosibirsk Standard Time)
     
+    date.setDate(date.getDate() - days);
+    let result = date.getDate();
+
+    // Перевод из строки в формат числа
+    let months = ["Jan", "Feb", "Mart", "Apr", "Jun", "Jul", "и т.д.","Dec"];
+    for (let i = 0; i < months.length - 1; i++) {
+        if (saveDate[1] != months[i]) {
+            continue;
+        }
+        saveDate[1] = i;
+    }
+
+    date = new Date(new Date(+saveDate[3], +saveDate[1], +saveDate[2]));
+    //date.setDate(result + days);
     return result;
 }
 
-alert(topSalary(salaries));
-alert(topSalary());
+alert(date);
