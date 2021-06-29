@@ -5,8 +5,10 @@ let salaries = {
 };
 
 function topSalary({ ...rest } = {}) { 
+
     let max = 0;
-    let result;
+    let result = null;
+
     for (let [key, value] of Object.entries(rest)) {
 
         if (value > max) {
@@ -14,7 +16,7 @@ function topSalary({ ...rest } = {}) {
             result = key;
         }
     }
-    if (max == 0) return null;
+    
     return result;
 }
 
