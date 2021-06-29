@@ -5,12 +5,10 @@ alert(getDateAgo(date, 2));
 alert(getDateAgo(date, 365));
 
 function getDateAgo(date, days) {
+    let dateCopy = new Date(date);
 
-    date.setDate(date.getDate() - days);
-    let result = date.getDate();
-
-    date.setDate(result + days);
-    return result;
+    dateCopy.setDate(date.getDate() - days);
+    return dateCopy.getDate();
 }
 
-alert(date);
+alert(date); // Исходная дата осталась неизменна
